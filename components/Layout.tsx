@@ -12,7 +12,7 @@ interface Scenery {
     updatedAt: Date
 }
 
-const Layout = ({ sceneries = [] }: any) => {
+const Layout = ({ sceneries = [], children }: any) => {
     const ids = sceneries.map((obj: Scenery) => obj.id)
     console.log(ids)
 
@@ -45,7 +45,7 @@ const Layout = ({ sceneries = [] }: any) => {
                             <span className="ml-3 text-xl">ScenicShare</span>
                         </a>
                         <nav className="flex flex-wrap items-center justify-center text-base md:ml-auto">
-                            <Link href="/" legacyBehavior>
+                            <Link href="/create" legacyBehavior>
                                 <a className="mr-5 hover:text-gray-900">Link</a>
                             </Link>
                         </nav>
@@ -65,6 +65,7 @@ const Layout = ({ sceneries = [] }: any) => {
                         </button>
                     </div>
                 </header>
+                <main>{children}</main>
             </div>
         </>
     )
