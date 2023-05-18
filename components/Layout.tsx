@@ -1,6 +1,7 @@
 import React from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
+import { useState } from 'react'
 
 interface Scenery {
     id: string
@@ -13,8 +14,9 @@ interface Scenery {
 }
 
 const Layout = ({ sceneries = [], children }: any) => {
-    const ids = sceneries.map((obj: Scenery) => obj.id)
-    console.log(ids)
+    const sceneryIds = sceneries.map((obj: Scenery) => obj.id)
+    console.log(sceneryIds)
+    // const [ids, setIds] = useState(sceneryIds)
 
     return (
         <>
@@ -65,7 +67,15 @@ const Layout = ({ sceneries = [], children }: any) => {
                         </button>
                     </div>
                 </header>
-                <main>{children}</main>
+                <p></p>
+                <main>
+                    {/* {sceneryIds.map((id: string) => (
+                        <h2 className="text-gray-900" key={id}>
+                            {id}
+                        </h2>
+                    ))} */}
+                    {children}
+                </main>
             </div>
         </>
     )
