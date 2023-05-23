@@ -19,15 +19,16 @@ const Create = () => {
     // const addScenery = (data: any) => axios.post('/api/create', data)
 
     const initialValues = {
-        image: undefined,
+        image: '',
         title: '',
         description: '',
     }
 
-    const handleSubmit = async (values: Scenery) => {
+    const handleSubmit = async (values: Scenery, { resetForm }: any) => {
         try {
             const response = await axios.post('/api/create', values)
             console.log(response)
+            resetForm()
         } catch (error) {
             console.error(error)
         }
@@ -36,34 +37,40 @@ const Create = () => {
     return (
         <Layout>
             <div className="m-20 flex items-center justify-center">
-                <div className="rounded-lg bg-gray-200 p-8 shadow-lg">
-                    <h1 className="text-black">ログイン（Formik）</h1>
+                <div className="w-96 rounded-lg bg-gray-200 p-8 shadow-lg">
+                    <h1 className="text-black">Form</h1>
                     <Formik
                         initialValues={initialValues}
                         validationSchema={FormValidationSchema}
                         onSubmit={handleSubmit}
                     >
-                        <Form>
+                        <Form className="mx-auto max-w-md">
                             <div className="mb-4">
-                                <label htmlFor="url" className="text-black">
-                                    URL:{' '}
+                                <label htmlFor="image" className="mb-2 block text-black">
+                                    Image URL:
                                 </label>
                                 <Field
                                     type="text"
-                                    id="url"
-                                    name="url"
-                                    className="w-64 p-2 text-black"
+                                    id="image"
+                                    name="image"
+                                    className="w-full rounded-md border border-gray-300 px-3 py-2 text-black"
                                 />
+                                {/* <ErrorMessage
+                                    name="image"
+                                    component="div"
+                                    className="text-red-500"
+                                /> */}
                             </div>
+
                             <div className="mb-4">
-                                <label htmlFor="title" className="text-black">
-                                    Title:{' '}
+                                <label htmlFor="title" className="mb-2 block text-black">
+                                    Title:
                                 </label>
                                 <Field
                                     type="text"
                                     id="title"
                                     name="title"
-                                    className="w-64 p-2 text-black"
+                                    className="w-full rounded-md border border-gray-300 px-3 py-2 text-black"
                                 />
                                 <ErrorMessage
                                     name="title"
@@ -71,15 +78,16 @@ const Create = () => {
                                     className="text-red-500"
                                 />
                             </div>
+
                             <div className="mb-4">
-                                <label htmlFor="description" className="text-black">
-                                    Description:{' '}
+                                <label htmlFor="description" className="mb-2 block text-black">
+                                    Description:
                                 </label>
                                 <Field
-                                    type="text"
+                                    as="textarea"
                                     id="description"
                                     name="description"
-                                    className="w-64 p-2 text-black"
+                                    className="w-full rounded-md border border-gray-300 px-3 py-2 text-black"
                                 />
                                 <ErrorMessage
                                     name="description"
@@ -87,14 +95,13 @@ const Create = () => {
                                     className="text-red-500"
                                 />
                             </div>
-                            <div>
-                                <button
-                                    type="submit"
-                                    className="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700"
-                                >
-                                    ログイン
-                                </button>
-                            </div>
+
+                            <button
+                                type="submit"
+                                className="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
+                            >
+                                Submit
+                            </button>
                         </Form>
                     </Formik>
                 </div>
