@@ -14,7 +14,7 @@ interface Scenery {
 }
 
 const Layout = ({ sceneries = [], children }: any) => {
-    const sceneryIds = sceneries.map((obj: Scenery) => obj.id)
+    const sceneryIds = sceneries.map((obj: Scenery) => obj.title)
     console.log(sceneryIds)
     // const [ids, setIds] = useState(sceneryIds)
 
